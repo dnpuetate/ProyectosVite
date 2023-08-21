@@ -14,7 +14,9 @@ export function App() {
                 buenas tardes
             </TwitterFollowCard>
 
-
+            <TwitterFollowCard isFollowind={false} userName='dayan'>
+                buenas tardes
+            </TwitterFollowCard>
           
             
 

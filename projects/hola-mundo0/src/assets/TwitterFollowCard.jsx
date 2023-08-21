@@ -19,7 +19,7 @@ export function TwitterFollowCard ({children, userName = undefined, isFollowind}
             </div>
             <aside>
                 <button className='tw-followCard-button'>
-                    Seguir 
+                    {text}
                 </button>
             </aside>
         </article>
