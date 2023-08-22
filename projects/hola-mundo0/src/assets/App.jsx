@@ -9,18 +9,16 @@ export function App() {
 
     return (
         <section className='App'>
-            
-            <TwitterFollowCard isFollowind userName='dayan'>
-                buenas tardes
-            </TwitterFollowCard>
 
-            <TwitterFollowCard isFollowind={false} userName='dayan'>
-                buenas tardes
-            </TwitterFollowCard>
-          
-            
-
-
+        <TwitterFollowCard isFollowind={false} userName='bolita'>
+           buenas tardes
+        </TwitterFollowCard>
+        <TwitterFollowCard isFollowind={true} userName='dayan'>
+            buenas tardes
+        </TwitterFollowCard>
+        <TwitterFollowCard isFollowind={true} userName='coquito'>
+            buenas tardes
+        </TwitterFollowCard>
         </section>
 
     )
