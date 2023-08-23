@@ -42,14 +42,15 @@ export function App() {
     return (
         <section className='App'>
             {
-                users.map(({ userName, name, isFollowind })=> (
-                        <TwitterFollowCard
-                            userName={userName}
-                            initialIsFollowind={isFollowind}
-                        >
-                            {name}
-                        </TwitterFollowCard>
-                    )
+                users.map(({ userName, name, isFollowind }) => (
+                    <TwitterFollowCard
+                        key={userName}
+                        userName={userName}
+                        initialIsFollowind={isFollowind}
+                    >
+                        {name}
+                    </TwitterFollowCard>
+                )
                 )
             }
         </section>
