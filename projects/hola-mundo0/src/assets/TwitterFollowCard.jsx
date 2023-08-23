@@ -4,7 +4,7 @@ import './App.css'
 export function TwitterFollowCard({ children, userName}) {
 
     //const addAtt = (userName) => `@${userName}`
-    // console.log(isFollowind)
+    //console.log(isFollowind)
 
     const [isFollowind, setIsFollowind] = useState(false)
     /*const state = useState(false)
