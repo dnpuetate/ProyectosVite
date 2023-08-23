@@ -1,12 +1,12 @@
 //hooks
 import { useState } from 'react'
 import './App.css'
-export function TwitterFollowCard({ children, userName}) {
+export function TwitterFollowCard({ children, userName, initialIsFollowind}) {
 
     //const addAtt = (userName) => `@${userName}`
     //console.log(isFollowind)
 
-    const [isFollowind, setIsFollowind] = useState(false)
+    const [isFollowind, setIsFollowind] = useState(initialIsFollowind)
     /*const state = useState(false)
     const isFollowind = state[0]
     const setIsFollowind = state[1]*/
