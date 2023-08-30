@@ -8,10 +8,11 @@ import { Square } from "./components/Square.jsx";
 import { checkWinnerFrom } from "./logic/board.js";
 
 import { WinnerModal } from "./components/WinnerModal.jsx";
+
+import { saveGameToStorage, resetGameStorage } from "./logic/storage/index.js";
 // importar constantes 
 
 import { checkEndGame } from "./logic/board.js";
-
 
 import { TURNS } from "./constants.js";
 //APP ----------------------------------------------------
@@ -19,23 +20,38 @@ import { TURNS } from "./constants.js";
 
 function App() {
 
-  //CREAR BOARD 
-  const [board, setBoard] = useState(
-    Array(9).fill(null)
-    )
+  //CREAR BOARD -------- EL useState y todos los hooks no pueden estar dentro de un if por que tienen un array interno para saber cuando ejecutarse
+  const [board, setBoard] = useState(() => {
+
+    //GUARDAR PARTIDA PT2 --- carpeta logic/storage/index
+    //recuperar el board del local storage 
+    const boardFromStorage = window.localStorage.getItem('board')
+    //si tengo un board en el storage entonces, traigo los datos del storage como valor inicial,
+    //caso contrario inciamos creando un numero board 
+    if (boardFromStorage) return JSON.parse(boardFromStorage)
+    return Array(9).fill(null)
+  })
+
   //console.log(board)
 
   //TURNO - ACTUALIZAR TURNO
-  const [turn, setTurn] = useState(TURNS.X)
+  const [turn, setTurn] = useState(() => {
+    const turnFromStorage = window.localStorage.getItem('turn')
+
+    return turnFromStorage ?? TURNS.X
+  })
 
   //elejir ganador
   //null es que no hay ganador, false es que hay empate
-  const [winner, setWinner] = useState(null) 
+  const [winner, setWinner] = useState(null)
 
   const resetGame = () => {
     setBoard(Array(9).fill(null))
     setTurn(TURNS.X)
     setWinner(null)
+
+    //Reset game Storage PT2 ------ logic/storage/index
+    resetGameStorage()
   }
 
 
@@ -44,10 +60,10 @@ function App() {
     //crear una copia del tablero - nuevo tablero
     // no actualizamos esta posición
     // si ya tiene algo
-    if(board[index] || winner)  return 
+    if (board[index] || winner) return
 
     //actualizar el tablero
-    const newBoard = [... board]
+    const newBoard = [...board]
     //poner en el indice el valor que contiene el turno actual "x o" 
     newBoard[index] = turn
     setBoard(newBoard)
@@ -56,15 +72,21 @@ function App() {
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
     setTurn(newTurn)
 
+
+    //guardar la partida 
+    saveGameToStorage({
+      board: newBoard,
+      turn: newTurn
+    })
+
     //revisar si hay ganador
     const newWinner = checkWinnerFrom(newBoard)
-
     //si tenemos un nuevo ganador
-    if(newWinner){
-      
+    if (newWinner) {
+
       confetti()
       setWinner(newWinner)
-    } else if (checkEndGame(newBoard)){
+    } else if (checkEndGame(newBoard)) {
       //TODO: CHECK IF GAME IS OVER
       setWinner(false) //empate
     }
@@ -80,13 +102,13 @@ function App() {
         {
           board.map((square, index) => {
             return (
-                  <Square
-                    key={index}
-                    index={index}
-                    updateBoard={updateBoard}
-                  >
-                    {square}
-                  </Square>
+              <Square
+                key={index}
+                index={index}
+                updateBoard={updateBoard}
+              >
+                {square}
+              </Square>
             )
           })
         }
@@ -100,7 +122,7 @@ function App() {
           {TURNS.O}
         </Square>
       </section>
-      <WinnerModal resetGame={resetGame} winner={winner}/>
+      <WinnerModal resetGame={resetGame} winner={winner} />
     </main>
   )
 
