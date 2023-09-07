@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import confetti from 'canvas-confetti'
 // importar componentes
-// eslint-disable-next-line no-unused-vars
 import { Square } from './components/Square.jsx'
 
-// eslint-disable-next-line no-unused-vars
 import { WinnerModal } from './components/WinnerModal.jsx'
 
 import { checkWinnerFrom, checkEndGame } from './logic/board.js'

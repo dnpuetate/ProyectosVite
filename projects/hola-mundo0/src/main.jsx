@@ -1,17 +1,14 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {App} from './assets/App.jsx'
+import { App } from './assets/App.jsx'
 import './assets/index.css'
 const root = ReactDOM.createRoot(document.getElementById('root'))
-
 
 root.render(
   <App />
 )
 
-
 /*
-//funcion para crear un boton 
+//funcion para crear un boton
 const createButton = ({text}) => {
   return (
     <button>
@@ -45,14 +42,11 @@ root.render(
       hola pony
     </button>
 
-
     {createButton({text: 'Boton 1'})}
     {createButton({text: 'Boton 2'})}
     {createButton({text: 'Boton 3'})}
 
-
     <Button text="boton react"></Button>
-
 
   </React.Fragment>
 

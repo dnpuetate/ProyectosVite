@@ -1,4 +1,6 @@
 // FUNCION SQUARE ----------------------------------------------
+import PropTypes from 'prop-types'
+
 export const Square = ({ children, isSelected, updateBoard, index }) => {
   const className = `square ${isSelected ? 'is-selected' : ''}`
 
@@ -18,3 +20,9 @@ export const Square = ({ children, isSelected, updateBoard, index }) => {
 }
 
 // -----------------------------------------------------------
+Square.propTypes = {
+  children: PropTypes.node, // Valida que "children" sea de tipo nodo (Node)
+  isSelected: PropTypes.bool.isRequired, // Valida que "isSelected" sea un booleano requerido
+  updateBoard: PropTypes.func.isRequired, // Valida que "updateBoard" sea una función requerida
+  index: PropTypes.number.isRequired // Valida que "index" sea un número requerido
+}
