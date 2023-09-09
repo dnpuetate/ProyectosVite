@@ -22,7 +22,8 @@ export const Square = ({ children, isSelected, updateBoard, index }) => {
 // -----------------------------------------------------------
 Square.propTypes = {
   children: PropTypes.node, // Valida que "children" sea de tipo nodo (Node)
-  isSelected: PropTypes.bool.isRequired, // Valida que "isSelected" sea un booleano requerido
-  updateBoard: PropTypes.func.isRequired, // Valida que "updateBoard" sea una función requerida
-  index: PropTypes.number.isRequired // Valida que "index" sea un número requerido
+  isSelected: PropTypes.bool, // Valida que "isSelected"
+  updateBoard: PropTypes.func,
+  index: PropTypes.number // Valida que "updateBoard"
+  // index: PropTypes.number.isRequired --> Valida que "index" sea un número requerido
 }
